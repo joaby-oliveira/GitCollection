@@ -1,4 +1,4 @@
-import React, {useState, FC} from 'react';
+import React, { useState, FC, ChangeEvent } from 'react';
 
 import { Title, Form, Repos } from './styles';
 import { FiChevronRight } from 'react-icons/fi'
@@ -16,23 +16,42 @@ interface GithubRepository {
 }
 
 export const Dashboard: FC = () => {
+  const [repos, setRepos] = useState<GithubRepository[]>([])
+  const [newRepo, setNewRepo] = useState('')
+  function handleInputChange(event: ChangeEvent<HTMLInputElement>): void {
+    setNewRepo(event.target.value);
+    console.log(newRepo);
+  }
+  async function handleAddRepo(
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> {
+    event.preventDefault()
+    const response = await api.get<GithubRepository>(`repos/${newRepo}`)
+    const repository = response.data;
+
+    setRepos([...repos, repository])
+    setNewRepo('')
+  }
+
   return (
     <>
       <img src={logo} alt="GitCollection" />
       <Title>Catálogo de repositórios do Github</Title>
-      <Form>
-        <input placeholder="username/repository_name" />
+      <Form onSubmit={handleAddRepo}>
+        <input placeholder="username/repository_name" value={newRepo} onChange={handleInputChange} />
         <button type="submit">Buscar</button>
       </Form>
       <Repos>
-        <a href="/repositories">
-          <img src="https://avatars.githubusercontent.com/u/55921991?v=4" alt="Repositorio" />
-          <div>
-            <strong>Usuário do Github</strong>
-            <p>Repositorio de uma usuario do github</p>
-          </div>
-          <FiChevronRight size={20} />
-        </a>
+        {repos.map(repository => (
+          <a href="/repositories" key={repository.full_name}>
+            <img src={repository.owner.avatar_url} alt={repository.owner.login} />
+            <div>
+              <strong>{repository.full_name}</strong>
+              <p>{repository.description}</p>
+            </div>
+            <FiChevronRight size={20} />
+          </a>
+        ))}
       </Repos>
     </>
   )
