@@ -65,7 +65,7 @@ export const Dashboard: FC = () => {
       {inputError && <Error>{inputError}</Error>}
       <Repos>
         {repos.map(repository => (
-          <a href="/repositories" key={repository.full_name}>
+          <a href={`repositories/${repository.full_name}`} key={repository.full_name}>
             <img src={repository.owner.avatar_url} alt={repository.owner.login} />
             <div>
               <strong>{repository.full_name}</strong>
