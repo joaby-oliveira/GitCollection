@@ -22,3 +22,50 @@ export const Header = styled.header`
     }
   }
 `
+
+export const RepoInfo = styled.section`
+  margin-top: 80px;
+
+  header {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 120px;
+      height: 120px;
+      border-radius: 150%;
+    }
+
+    div {
+      margin-left: 24px;
+      strong {
+        font-size: 36px;
+        color: #3d3d4d;
+      }
+      p {
+        font-size: 18px;
+        color: #737380;
+      }
+    }
+  }
+  ul {
+    display: flex;
+    list-style: none;
+    li {
+      margin: 40px; 
+      &:nth-child(2) {
+        margin-left: 80px;
+      }
+      strong {
+        display: block;
+        font-size: 36px;
+        color: #3d3d4d;
+      }
+      span {
+        display: block;
+        margin-top: 4px;
+        color: #737380;
+      }
+    }
+  }
+`
