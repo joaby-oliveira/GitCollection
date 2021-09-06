@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useRouteMatch } from 'react-router-dom'
 
-import { Header, RepoInfo } from './styles'
+import { Header, Issues, RepoInfo } from './styles'
 import logo from '../../assets/logo.svg'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 
@@ -44,6 +44,16 @@ export const Repo: React.FC = () => {
           </li>
         </ul>
       </RepoInfo>
+      <Issues>
+        <Link to="/">
+          <div>
+            <strong>LAJSDLdj kjadsd </strong>
+            <p> KLLjao is siiap joiauhf posoop</p>
+
+            <FiChevronRight size={20}/>
+          </div>
+        </Link>
+      </Issues>
     </>
   )
 }

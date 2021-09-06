@@ -69,3 +69,42 @@ export const RepoInfo = styled.section`
     }
   }
 `
+
+export const Issues = styled.div`
+  margin-top: 80px;
+  a {
+    background: #ffffff;
+    border-radius: 5px;
+    width: 100%auto;
+    padding: 24px;
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: translateX(6px)
+    }
+
+    & + a {
+      margin-top: 16px;
+    }
+
+    div {
+      margin: 0 6px;
+      flex: 1;
+      strong {
+        font-size: 20px;
+        color: #3d3d4d;
+      }
+      p {
+        font-size: 18px;
+        color: #a8a8b3;
+      }
+    }
+    svg {
+      margin-left: auto;
+      color: #cbcbd6;
+    }
+  }
+`
