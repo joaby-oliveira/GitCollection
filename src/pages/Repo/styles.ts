@@ -52,8 +52,8 @@ export const RepoInfo = styled.section`
     display: flex;
     list-style: none;
     li {
-      margin: 40px; 
-      &:nth-child(2) {
+      margin-top: 40px; 
+      & + li {
         margin-left: 80px;
       }
       strong {
