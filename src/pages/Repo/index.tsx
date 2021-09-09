@@ -49,7 +49,7 @@ export const Repo: React.FC = () => {
   return (
     <>
       <Header>
-        <img src={logo} />
+        <img src={logo} alt={repository?.full_name}/>
         <Link to="/">
           <FiChevronLeft />
           Voltar
