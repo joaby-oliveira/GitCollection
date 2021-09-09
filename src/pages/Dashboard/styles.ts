@@ -65,6 +65,8 @@ export const Form = styled.form<FormProps>`
 export const Repos = styled.div`
   margin-top: 80px;
   max-width: 700px;
+  display: flex;
+  flex-direction: column-reverse;
   a {
     background: #fff;
     border-radius: 5px;

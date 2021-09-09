@@ -4,7 +4,7 @@ import { Title, Form, Repos, Error } from './styles';
 import { FiChevronRight } from 'react-icons/fi'
 import logo from '../../assets/logo.svg';
 import { api } from '../../services/api';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 interface GithubRepository {
   full_name: string;
@@ -18,8 +18,8 @@ interface GithubRepository {
 export const Dashboard: FC = () => {
   const [repos, setRepos] = useState<GithubRepository[]>(() => {
     const storageRepos = localStorage.getItem('@GitCollection:repositories');
- 
-    if(storageRepos) {
+
+    if (storageRepos) {
       return JSON.parse(storageRepos);
     }
     return;
@@ -33,7 +33,6 @@ export const Dashboard: FC = () => {
 
   function handleInputChange(event: ChangeEvent<HTMLInputElement>): void {
     setNewRepo(event.target.value);
-    console.log(newRepo);
   }
 
   async function handleAddRepo(
@@ -41,17 +40,21 @@ export const Dashboard: FC = () => {
   ): Promise<void> {
     event.preventDefault()
 
-    if(!newRepo) {
+    if (!newRepo) {
       setInputError('Informe o username/repositório');
       return;
     }
 
-    const response = await api.get<GithubRepository>(`repos/${newRepo}`);
-    const repository = response.data;
+    try {
+      const response = await api.get<GithubRepository>(`repos/${newRepo}`);
+      const repository = response.data;
 
-    setRepos([...repos, repository]);
-    setNewRepo('');
-    setInputError('')
+      setRepos([...repos, repository]);
+      setNewRepo('');
+      setInputError('')
+    } catch {
+      setInputError('Repositório não encontrado')
+    }
   }
 
   return (
